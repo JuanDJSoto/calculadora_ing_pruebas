@@ -8,15 +8,22 @@ import javax.swing.JOptionPane;
 public class Calculador {
     int conpunto = 0;
     public static int con=0;
-    public static double[] hist = new double[10];
+    public static double[] hist = new double[11];
     int boardWidth = 360;
     int boardHeight = 540;
 
-    Color customLightBlue = new Color(34,56,141); 
-    Color customDarkBlue = new Color(26,37,135);
+    //Color customLightBlue = new Color(34,56,141); 
+    //Color customDarkBlue = new Color(26,37,135);
+    //Color customBlack = new Color(28, 28, 28);
+    //Color customPurple = new Color(123,56,141);
+    //Color customGray = new Color(62,81,181);
+    
+    Color customLightBlue = new Color(0, 180, 216);
+    Color customDarkBlue = new Color(3, 4, 94);
     Color customBlack = new Color(28, 28, 28);
-    Color customPurple = new Color(123,56,141);
-    Color customGray = new Color(62,81,181);
+    Color customPurple = new Color(0, 119, 182);
+    Color customGray = new Color(144, 224, 239);
+    Color customwhite = new Color(255,255,255);
 
     String[] buttonValues = {
         "AC", "C", "H", "÷", 
@@ -75,7 +82,7 @@ public class Calculador {
             //button.setBorder(new LineBorder(customBlack));
             if (Arrays.asList(topSymbols).contains(buttonValue)) {
                 button.setBackground(customDarkBlue);
-                button.setForeground(customBlack);
+                button.setForeground(customwhite);
             }
             else if (Arrays.asList(rightSymbols).contains(buttonValue)) {
                 button.setBackground(customPurple);
@@ -192,8 +199,16 @@ public class Calculador {
     }
     
     void historial(){
-    hist[con]= resultado;
-    con++;
+        if(con<10){
+            hist[con]= resultado;
+            con++;
+        }else{
+            for(int i = 0 ; i < 10 ; i++){
+                hist[i] = hist[i+1];
+            }
+            hist[10] = 0;
+            hist[9]=resultado;
+        }
     //JOptionPane.showMessageDialog(null, con+"-----"+hist[con-1]);
 }
 

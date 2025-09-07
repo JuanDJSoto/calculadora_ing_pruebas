@@ -4,6 +4,8 @@
  */
 package calculadora;
 import calculadora.Calculador;
+import java.awt.Color;
+import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -17,35 +19,53 @@ import javax.swing.table.DefaultTableModel;
  */
 public class History_Manager extends javax.swing.JFrame {
 DefaultTableModel modelo;
+int con = calculadora.Calculador.con;
+        Object[] valores = new Object[10];
+        
+Color customBackground = new Color(144, 224, 239);        
+Color customHeader = new Color(0, 119, 182);
     /**
      * Creates new form History_Manager
      */
     public History_Manager() {
+        
         setLocationRelativeTo(null);
         initComponents();
         TablaHist();
-
+        
         
     }
 void TablaHist() {
-        int con = calculadora.Calculador.con;
-        String[] columnas = {"Historial","indice"};
-
-        modelo = new DefaultTableModel(columnas, con);
-        for (int i = 0; i < con; i++) {
-            Object[] fila = {String.valueOf(calculadora.Calculador.hist[i])};
-            //JOptionPane.showMessageDialog(null, fila);
-            modelo.addRow(fila);
-        } 
-        tabla = new JTable(modelo);
-        tabla.setModel(modelo);
+    tabla.setBackground(customBackground);
+    
+    llenado();
+    int con = calculadora.Calculador.con;
+        if(con>10){
+            con = 10;
+        }
         
+        String[] columnas = {"Historial"};
+        modelo = new DefaultTableModel(columnas, con);
+        for (int i = 0; i < con && i < 10; i++) {
+            Object[] m = new Object[10];
+            m[0] = valores[i];
+            modelo.insertRow(0, m);
+        } 
+        
+        tabla.setModel(modelo);
+        tabla = new JTable(modelo);
         this.setTitle("Historial");
         this.setSize(400, 250);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
     }
 
+void llenado(){
+        for(int i = 0; i < con && i < 10 ;i++){
+            valores[i] = String.valueOf(calculadora.Calculador.hist[i]);
+            //JOptionPane.showMessageDialog(null, valores[i]);
+        }
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,16 +79,15 @@ void TablaHist() {
         tabla = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setBackground(new java.awt.Color(202, 240, 248));
 
+        tabla.setBackground(new java.awt.Color(144, 224, 239));
         tabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Title 1"
             }
         ));
         jScrollPane2.setViewportView(tabla);
@@ -77,10 +96,10 @@ void TablaHist() {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

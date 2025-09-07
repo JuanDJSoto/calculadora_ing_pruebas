@@ -9,12 +9,7 @@ package calculadora;
  * @author Juan Soto
  */
 public class Calculadora {
-
-
     public static void main(String[] args) throws Exception {
         Calculador calculator = new Calculador();
     }
-
-
-    
 }
