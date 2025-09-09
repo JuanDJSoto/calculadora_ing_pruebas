@@ -18,22 +18,22 @@ public class Calculador {
     //Color customPurple = new Color(123,56,141);
     //Color customGray = new Color(62,81,181);
     
-    Color customLightBlue = new Color(0, 180, 216);
-    Color customDarkBlue = new Color(3, 4, 94);
-    Color customBlack = new Color(28, 28, 28);
-    Color customPurple = new Color(0, 119, 182);
-    Color customGray = new Color(144, 224, 239);
-    Color customwhite = new Color(255,255,255);
+    Color customLightBlue = new Color(112, 141, 129); //bottons
+    Color customDarkBlue = new Color(1, 22, 39); //top bottons
+    Color customBlack = new Color(28, 28, 28); //background
+    Color customPurple = new Color(141, 8, 1); //right bottons
+    Color customGray = new Color(253, 255, 252); //display
+    Color customwhite = new Color(255,255,255); //
 
     String[] buttonValues = {
-        "AC", "C", "H", "÷", 
+        "AC", "C", "Ans", "÷",
         "7", "8", "9", "×", 
         "4", "5", "6", "-",
         "1", "2", "3", "+",
         ".", "0", "00", "="
     };
     String[] rightSymbols = {"÷", "×", "-", "+", "="};
-    String[] topSymbols = {"AC", "C", "H"};
+    String[] topSymbols = {"AC", "C", "Ans"};
     String[] alternative = {""};
     
     JFrame frame = new JFrame("Calculator");
