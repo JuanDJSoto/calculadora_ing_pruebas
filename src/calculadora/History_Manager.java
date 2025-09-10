@@ -5,6 +5,7 @@
 package calculadora;
 import calculadora.Calculador;
 import java.awt.Color;
+import java.awt.Font;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
@@ -12,6 +13,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
 /**
  *
@@ -36,6 +38,11 @@ Color customHeader = new Color(0, 119, 182);
         
     }
 void TablaHist() {
+    JTableHeader header = tabla.getTableHeader();
+        Font headerFont = new Font("Dialog", Font.BOLD, 12); 
+        header.setFont(headerFont);
+        header.setBackground(customHeader);
+        header.setForeground(Color.white);
     tabla.setBackground(customBackground);
     
     llenado();
@@ -90,27 +97,44 @@ void llenado(){
                 "Title 1"
             }
         ));
+        tabla.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(tabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tablaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMouseClicked
+        // TODO add your handling code here:
+        if(evt.getButton()==1){
+            int fila = tabla.getSelectedRow();
+            fila = fila + 1;
+            calculadora.Calculador.A = "0";
+            calculadora.Calculador.operator = null;
+            calculadora.Calculador.B = null;
+            Object a = tabla.getValueAt(0, fila);
+            calculadora.Calculador.displayLabel.setText(""+a);
+            this.setVisible(false);
+        }
+    }//GEN-LAST:event_tablaMouseClicked
 
     /**
      * @param args the command line arguments

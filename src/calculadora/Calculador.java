@@ -37,14 +37,14 @@ public class Calculador {
     String[] alternative = {""};
     
     JFrame frame = new JFrame("Calculator");
-    JLabel displayLabel = new JLabel();
+    public static JLabel displayLabel = new JLabel();
     JPanel displayPanel = new JPanel();
     JPanel buttonsPanel = new JPanel();
 
     //A+B, A-B, A*B, A/B
-    String A = "0";
-    String operator = null;
-    String B = null;
+    public static String A = "0";
+    public static String operator = null;
+    public static String B = null;
     double resultado;
 
     Calculador() {
@@ -161,7 +161,7 @@ public class Calculador {
                             displayLabel.setText(valor);
                             }
                             //displayLabel.setText(removeZeroDecimal(numDisplay));
-                        }else if(buttonValue == "H"){
+                        }else if(buttonValue == "Ans"){
                             new History_Manager().setVisible(true);
                         }
                     }
@@ -192,7 +192,7 @@ public class Calculador {
         }
     }
 
-    void clearAll() {
+    public void clearAll() {
         A = "0";
         operator = null;
         B = null;
