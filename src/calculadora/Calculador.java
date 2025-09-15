@@ -186,7 +186,7 @@ public class Calculador {
                             memory = 0;
                         }
                         else if(buttonValue == "MR"){
-                            displayLabel.setText(String.valueOf(memory));
+                            displayLabel.setText(String.format("%.2f", memory));
                         }
                     }
                     else { //digits or . 
