@@ -6,10 +6,12 @@ import javax.swing.*;
 import javax.swing.JOptionPane;
 
 public class Calculador {
+    double memory = 0;
     int conpunto = 0;
     public static int con=0;
     public static double[] hist = new double[11];
     int boardWidth = 360;
+    //*tamaño alternativo*int boardHeight = 630;
     int boardHeight = 540;
 
     //Color customLightBlue = new Color(34,56,141); 
@@ -26,15 +28,18 @@ public class Calculador {
     Color customwhite = new Color(255,255,255); //
 
     String[] buttonValues = {
+        "M+", "M-", "MC", "MR",
         "AC", "C", "Ans", "÷",
         "7", "8", "9", "×", 
         "4", "5", "6", "-",
         "1", "2", "3", "+",
-        ".", "0", "00", "="
+        ".", "0", "00", "=",
+       
     };
     String[] rightSymbols = {"÷", "×", "-", "+", "="};
     String[] topSymbols = {"AC", "C", "Ans"};
     String[] alternative = {""};
+    String[] memoria = {"M+","M-","MC","MR"};
     
     JFrame frame = new JFrame("Calculator");
     public static JLabel displayLabel = new JLabel();
@@ -67,7 +72,7 @@ public class Calculador {
         displayPanel.add(displayLabel);
         frame.add(displayPanel, BorderLayout.NORTH);
 
-        buttonsPanel.setLayout(new GridLayout(5, 4));
+        buttonsPanel.setLayout(new GridLayout(6, 4));
         buttonsPanel.setBackground(customBlack);
         frame.add(buttonsPanel);
 
@@ -163,6 +168,25 @@ public class Calculador {
                             //displayLabel.setText(removeZeroDecimal(numDisplay));
                         }else if(buttonValue == "Ans"){
                             new History_Manager().setVisible(true);
+                        }
+                    }
+                    //opciones de memoria
+                    else if (Arrays.asList(memoria).contains(buttonValue)) {
+                        if (buttonValue == "M+") {
+                            memory = memory + Double.parseDouble(displayLabel.getText());
+                            clearAll();
+                            displayLabel.setText("0");
+                        }
+                        else if (buttonValue == "M-") {
+                            memory = memory - Double.parseDouble(displayLabel.getText());
+                            clearAll();
+                            displayLabel.setText("0");
+                            
+                        }else if(buttonValue == "MC"){
+                            memory = 0;
+                        }
+                        else if(buttonValue == "MR"){
+                            displayLabel.setText(String.valueOf(memory));
                         }
                     }
                     else { //digits or . 
