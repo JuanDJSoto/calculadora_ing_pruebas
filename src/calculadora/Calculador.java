@@ -13,17 +13,11 @@ public class Calculador {
     int boardWidth = 360;
     //*tamaño alternativo*int boardHeight = 630;
     int boardHeight = 540;
-
-    //Color customLightBlue = new Color(34,56,141); 
-    //Color customDarkBlue = new Color(26,37,135);
-    //Color customBlack = new Color(28, 28, 28);
-    //Color customPurple = new Color(123,56,141);
-    //Color customGray = new Color(62,81,181);
     
-    Color customLightBlue = new Color(112, 141, 129); //bottons
-    Color customDarkBlue = new Color(1, 22, 39); //top bottons
+    Color customDarkGray = new Color(29,46,54); //números
+    Color customLightGray = new Color(167,188,199); //botones de funciones
     Color customBlack = new Color(28, 28, 28); //background
-    Color customPurple = new Color(141, 8, 1); //right bottons
+    Color customOrange = new Color(253,156,0); // operadores
     Color customGray = new Color(253, 255, 252); //display
     Color customwhite = new Color(255,255,255); //
 
@@ -86,19 +80,18 @@ public class Calculador {
             //button.setBorder(BorderFactory.createEtchedBorder(1));
             //button.setBorder(new LineBorder(customBlack));
             if (Arrays.asList(topSymbols).contains(buttonValue)) {
-                button.setBackground(customDarkBlue);
-                button.setForeground(customwhite);
+                button.setBackground(customLightGray);
+                button.setForeground(Color.black);
             }
             else if (Arrays.asList(rightSymbols).contains(buttonValue)) {
-                button.setBackground(customPurple);
+                button.setBackground(customOrange);
                 button.setForeground(Color.white);
-            }else if (Arrays.asList(alternative).contains(buttonValue)) {
-                button.setBackground(customDarkBlue);
-                button.setForeground(Color.white);
-                button.setEnabled(false);
+            }else if (Arrays.asList(memoria).contains(buttonValue)) {
+                button.setBackground(customLightGray);
+                button.setForeground(Color.black);
             }
             else {
-                button.setBackground(customLightBlue);
+                button.setBackground(customDarkGray);
                 button.setForeground(Color.white);
             }
             buttonsPanel.add(button);
