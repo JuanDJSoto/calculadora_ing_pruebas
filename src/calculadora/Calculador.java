@@ -11,7 +11,6 @@ public class Calculador {
     public static int con=0;
     public static double[] hist = new double[11];
     int boardWidth = 360;
-    //*tamaño alternativo*int boardHeight = 630;
     int boardHeight = 540;
     
     Color customDarkGray = new Color(29,46,54); //números
@@ -27,12 +26,12 @@ public class Calculador {
         "7", "8", "9", "×", 
         "4", "5", "6", "-",
         "1", "2", "3", "+",
-        ".", "0", "00", "=",
+        ".", "0", "%", "=",
        
     };
     String[] rightSymbols = {"÷", "×", "-", "+", "="};
     String[] topSymbols = {"AC", "C", "Ans"};
-    String[] alternative = {""};
+    String[] alternative = {"%"};
     String[] memoria = {"M+","M-","MC","MR"};
     
     JFrame frame = new JFrame("Calculator");
@@ -83,7 +82,7 @@ public class Calculador {
                 button.setBackground(customLightGray);
                 button.setForeground(Color.black);
             }
-            else if (Arrays.asList(rightSymbols).contains(buttonValue)) {
+            else if (Arrays.asList(rightSymbols).contains(buttonValue)||Arrays.asList(alternative).contains(buttonValue)) {
                 button.setBackground(customOrange);
                 button.setForeground(Color.white);
             }else if (Arrays.asList(memoria).contains(buttonValue)) {
@@ -121,8 +120,11 @@ public class Calculador {
                                     resultado = numA*numB;
                                     displayLabel.setText(String.format("%.2f", resultado));
                                     historial();
-                                }
-                                else if (operator == "÷") {
+                                }else if (operator == "%") {
+                                    resultado = (numA*100)/numB;
+                                    displayLabel.setText(String.format("%.2f", resultado));
+                                    historial();
+                                }else if (operator == "÷") {
                                     if (numB == 0){
                                         JOptionPane.showMessageDialog(null, "No es posible dividir entre 0");
                                     }else{
@@ -181,8 +183,16 @@ public class Calculador {
                         else if(buttonValue == "MR"){
                             displayLabel.setText(String.format("%.2f", memory));
                         }
+                    }else if(Arrays.asList(alternative).contains(buttonValue)){
+                        if (operator == null) {
+                                A = displayLabel.getText();
+                                displayLabel.setText("0");
+                                B = "0";
+                                conpunto++;
+                            }
+                            operator = buttonValue;
                     }
-                    else { //digits or . 
+                    else { //digitos o . 
                         if (buttonValue == ".") {
                             if (!displayLabel.getText().contains(buttonValue)) {
                                 if(conpunto>1){
